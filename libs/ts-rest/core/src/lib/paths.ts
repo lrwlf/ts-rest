@@ -62,7 +62,8 @@ export const insertParamsIntoPath = <T extends string>({
 }) => {
   return path
     .replace(/:([^/]+)/g, (_, p) => {
-      return (params as any)[p] || '';
+      const value = (params as any)[p];
+      return value === undefined ? '' : String(value);
     })
     .replace(/\/\//g, '/');
 };
