@@ -92,4 +92,16 @@ describe('insertParamsIntoPath', () => {
 
     expect(result).toBe('/1');
   });
+
+  it('should handle falsy param values', () => {
+    const path = '/post/:id';
+
+    const params = {
+      id: 0,
+    } as any;
+
+    const result = insertParamsIntoPath({ path, params });
+
+    expect(result).toBe('/post/0');
+  });
 });
